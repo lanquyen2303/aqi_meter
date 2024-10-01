@@ -54,35 +54,37 @@ dbTemp1.on("value", (snap) => (temp1.innerText = snap.val() + " °C"));
 dbHumi1.on("value", (snap) => (humi1.innerText = snap.val() + " %"));
 
 //pm + Co
-const pm = document.getElementById("gia tri pm");
+const pm = document.getElementById("pm2-value");
 const dbpm = firebase.database().ref().child("air").child("pm");
-const co = document.getElementById("gia tri co");
+const co = document.getElementById("co-value");
 const dbco = firebase.database().ref().child("air").child("co");
 
 // Lắng nghe giá trị PM từ Firebase
-dbpm.on('value', snap => {
+dbpm.on("value", (snap) => {
   const pmValue = parseFloat(snap.val()); // Lấy giá trị PM và chuyển đổi thành số
   const pmFormatted = pmValue.toFixed(2); // Định dạng giá trị PM với 2 chữ số thập phân
   pm.innerHTML = pmFormatted + " µg/m³ "; // Cập nhật nội dung với đơn vị
 });
 
 // Lắng nghe giá trị CO từ Firebase
-dbco.on('value', snap => {
+dbco.on("value", (snap) => {
   const coValue = parseFloat(snap.val()); // Lấy giá trị CO và chuyển đổi thành số
   const coFormatted = coValue.toFixed(2); // Định dạng giá trị CO với 2 chữ số thập phân
   co.innerHTML = coFormatted + " ppm"; // Cập nhật nội dung với đơn vị
 });
 
 //AQI
-const aqi = document.getElementById('gia-tri-aqi'); // ID của thẻ hiển thị AQI
-const dbaqi = firebase.database().ref().child('air').child("aqi");
-const aqiDisplayBox = document.querySelector('.aqi-display-box'); // Thẻ chứa khung AQI
+const aqi = document.getElementById("gia-tri-aqi"); // ID của thẻ hiển thị AQI
+const dbaqi = firebase.database().ref().child("air").child("aqi");
+const aqiDisplayBox = document.querySelector(".aqi-display-box"); // Thẻ chứa khung AQI
 
 // Lắng nghe giá trị AQI từ Firebase
-dbaqi.on('value', snap => {
-    const aqiValue = snap.val(); // Lấy giá trị AQI
-    const aqiFormatted = aqiValue.toFixed(2); // Định dạng giá trị AQI với 2 chữ số thập phân
-    aqi.innerText =  aqiFormatted; // Cập nhật nội dung với "AQI: " trước giá trị
+dbaqi.on("value", (snap) => {
+  const aqiValue = snap.val(); // Lấy giá trị AQI
+  console.log("AQI: ", aqiValue);
+  const aqiFormatted = aqiValue.toFixed(2); // Định dạng giá trị AQI với 2 chữ số thập phân
+  setDial(aqiFormatted);
+  // aqi.innerText = aqiFormatted; // Cập nhật nội dung với "AQI: " trước giá trị
 });
 
 // const temp2 = document.getElementById('giatrinhietdo2');
@@ -96,115 +98,15 @@ dbaqi.on('value', snap => {
 // dbTemp3.on('value', snap => temp3.innerText = snap.val() + " °C");
 
 //
-// var aqiCoclor = [
-//   "rgb(0,228,0)",
-//   "rgb(255,255,0)",
-//   "rgb(255,126,0)",
-//   "rgb(255,0,0)",
-//   "rgb(143,63,151)",
-//   "rgb(126,0,35)",
-// ];
+var aqiCoclor = [
+  "rgb(0,228,0)",
+  "rgb(255,255,0)",
+  "rgb(255,126,0)",
+  "rgb(255,0,0)",
+  "rgb(143,63,151)",
+  "rgb(126,0,35)",
+];
 
-function getAndShowAqi(nameChild, tenGiaTri, tenBox, aqiCoclor, unit) {
-  //(string,string,string,array,string)
-  var dbNameIndex = firebase.database().ref().child("air").child("aqi");
-  dbNameIndex.on("value", function (snapshot) {
-    var nameIndex = Math.round(snapshot.val());
-    if (nameIndex <= 50) {
-      // tot
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[0];
-    } else if (50 < nameIndex && nameIndex <= 100) {
-      // trung binh
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[1];
-    } else if (100 < nameIndex && nameIndex <= 150) {
-      //kem
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[2];
-    } else if (150 < nameIndex && nameIndex <= 200) {
-      //xau
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[3];
-    } else if (200 < nameIndex && nameIndex <= 300) {
-      //rat xau
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[4];
-    } else {
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[5];
-    }
-  });
-}
-
-function getAndShowPm(nameChild, tenGiaTri, tenBox, aqiCoclor, unit) {
-  //(string,string,string,array,string)
-  var dbNameIndex = firebase.database().ref().child("air").child("pm");
-  dbNameIndex.on("value", function (snapshot) {
-    var nameIndex = Math.round(snapshot.val());
-    if (nameIndex <= 12) {
-      // tot
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[0];
-    } else if (12 < nameIndex && nameIndex <= 35) {
-      // trung binh
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[1];
-    } else if (35 < nameIndex && nameIndex <= 55) {
-      //kem
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[2];
-    } else if (55 < nameIndex && nameIndex <= 150) {
-      //xau
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[3];
-    } else if (150 < nameIndex && nameIndex <= 250) {
-      //rat xau
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[4];
-    } else {
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[5];
-    }
-  });
-}
-
-function getAndShowCo(nameChild, tenGiaTri, tenBox, aqiCoclor, unit) {
-  //(string,string,string,array,string)
-  var dbNameIndex = firebase.database().ref().child("air").child("co");
-  dbNameIndex.on("value", function (snapshot) {
-    var nameIndex = snapshot.val().toFixed(2);
-    if (nameIndex <= 4.4) {
-      // tot
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[0];
-    } else if (4.4 < nameIndex && nameIndex <= 9.4) {
-      // trung binh
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[1];
-    } else if (9.4 < nameIndex && nameIndex <= 12.4) {
-      //kem
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[2];
-    } else if (12.4 < nameIndex && nameIndex <= 15.4) {
-      //xau
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[3];
-    } else if (15.4 < nameIndex && nameIndex <= 30.4) {
-      //rat xau
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[4];
-    } else {
-      document.getElementById(tenGiaTri).innerText = nameIndex + unit;
-      document.getElementById(tenBox).style.background = aqiCoclor[5];
-    }
-  });
-}
-getAndShowPm("pm", "giatri pm", "pm2_5", aqiCoclor, " ug/m3");
-getAndShowCo("co", "giatrico", "co", aqiCoclor, " ppm");
-getAndShowAqi("aqi", "giatriaqi", "aqi", aqiCoclor, "");
-
-// Hàm để đặt giá trị dial và màu sắc
 // Hàm để đặt giá trị dial và màu sắc
 function setDial(aqi) {
   let angle = getAQIDialAngle(aqi);
@@ -255,12 +157,3 @@ function getAQIDialAngle(aqi) {
     return 0;
   }
 }
-
-// Thiết lập giá trị ban đầu cho đồng hồ AQI
-let range = document.getElementById("set-aqi");
-setDial(range.value); // Gọi hàm để thiết lập đồng hồ AQI với giá trị hiện tại
-
-// Lắng nghe sự kiện thay đổi từ thẻ input
-range.addEventListener("change", (evt) => {
-  setDial(evt.target.value); // Cập nhật đồng hồ AQI khi thay đổi
-});
