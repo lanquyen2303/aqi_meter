@@ -1,0 +1,311 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f5f7;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS cho phần header */
+header {
+  background-color: #182848;
+  padding: 10px 30px;
+  color: white;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.navbar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Căn giữa logo và chữ */
+  font-weight: bold;
+}
+
+.small-logo {
+  width: 30px; /* Đặt kích thước logo nhỏ */
+  height: auto;
+  margin-right: 10px; /* Khoảng cách giữa logo và chữ */
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    text-align: right;
+}
+
+/* CSS cho phần menu với nền trắng */
+.menu-container {
+    background-color: white; /* Nền trắng cho menu */
+    padding: 10px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng đổ bóng */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: row; /* Đặt các mục menu theo cột */
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.nav-links li {
+  display: flex;
+  align-items: center; /* Căn giữa logo và chữ theo chiều dọc */
+  margin-right: 20px; /* Khoảng cách giữa các mục menu */
+}
+
+.menu-logo {
+  width: 20px; /* Kích thước logo menu */
+  height: auto;
+  margin-right: 10px; /* Khoảng cách giữa logo và chữ menu */
+}
+
+.nav-links a {
+    color: #182848; /* Màu chữ của menu */
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links li:last-child {
+  margin-right: 0;
+}
+
+.dashboard {
+  padding: 20px;
+}
+
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép các thẻ .card bọc lại khi không còn đủ chỗ */
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 14%;
+  text-align: left;
+  margin-right: 20px; /* Khoảng cách giữa các card trong cùng một hàng */
+  margin-bottom: 20px; /* Khoảng cách giữa các hàng nếu thẻ card bọc lại */
+  position: relative; /* Để sử dụng positioning cho logo */
+}
+
+.card-logo {
+  position: absolute; /* Đặt vị trí tuyệt đối để căn chỉnh logo bên phải */
+  right: 45px; /* Khoảng cách từ bên phải của thẻ .card */
+  top: 30%; /* Căn giữa theo chiều dọc */
+  transform: translateY(-50%); /* Định vị logo chính xác giữa theo chiều dọc */
+  width: 40px; /* Kích thước logo */
+  height: auto;
+}
+.card-logo1{
+  position: absolute; /* Đặt vị trí tuyệt đối để căn chỉnh logo bên phải */
+  right: 45px; /* Khoảng cách từ bên phải của thẻ .card */
+  top: 30%; /* Căn giữa theo chiều dọc */
+  transform: translateY(-50%); /* Định vị logo chính xác giữa theo chiều dọc */
+  width: 60px; /* Kích thước logo */
+  height: auto;
+}
+.charts {
+  display: flex;
+}
+
+.temperature-chart {
+  position: relative;
+  flex: 2;
+  background: white;
+  padding: 5px;
+  margin-right: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.side-charts {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-top: -170px; /* Điều chỉnh giá trị âm để đẩy lên trên */
+}
+
+.side-chartssecond {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%; /*Giảm chiều rộng để thu nhỏ khung */
+  max-width: 480px; /* Đặt giới hạn chiều rộng tối đa */
+  height: 200px; /* Giảm chiều cao để khung nhỏ hơn */
+  /* max-height: 230px; Đặt giới hạn chiều cao tối đa */
+  margin-top: -40px; /* Điều chỉnh để căn chỉnh vị trí */
+  padding: 5px; /* Giảm padding để khung gọn hơn */
+  overflow: hidden;/*Ẩn phần tràn nếu có*/
+}
+
+.chart-card {
+  background: white;
+  padding: 10px;
+  margin-bottom: 50px;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+.chart-card:last-child {
+  margin-bottom: 0;
+}
+
+.boxtime {
+  position: absolute; /* Định vị tuyệt đối để căn góc trên bên phải */
+  top: 15px; /* Khoảng cách từ cạnh trên */
+  right: 10px; /* Khoảng cách từ cạnh phải */
+  display: flex; /* Sử dụng flexbox để căn chỉnh logo và nội dung */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  font-size: 14px; /* Kích thước chữ */
+  /* font-weight: bold; Độ đậm chữ */
+  color: #aea6a6; /* Màu chữ */
+  background-color: rgba(255, 255, 255, 0.9); /* Nền trắng với độ trong suốt nhẹ */
+  padding: 5px 10px; /* Khoảng cách bên trong để tạo khung đẹp */
+  border: 1px solid #ddd; /* Viền xung quanh */
+  border-radius: 5px; /* Bo góc khung */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để khung nổi bật */
+}
+
+.calendar-icon {
+  width: 25px; /* Kích thước logo lịch */
+  height: 25px; /* Kích thước logo lịch */
+  margin-right: 8px; /* Khoảng cách giữa logo và nội dung */
+}
+/* .clock
+/* {
+  position: relative;
+  text-align: right;
+  margin:10px 0;
+  display: flex;
+} */ 
+
+
+.aqi-gauge {
+  text-align: center;
+}
+
+.gauge {
+  display: inline-block;
+}
+
+.gauge > div[role=meter] {
+  border-radius: 8rem 8rem 0 0;
+  border: 1px solid black;
+  width: 16rem; /* Có thể thay đổi nếu cần */
+  height: 8rem; /* Có thể thay đổi nếu cần */
+  background-color: white; /* Màu nền mặc định */
+  position: relative;
+  overflow: hidden;
+  background: conic-gradient(from 0deg at 50% 100%,
+                              red 30deg, #8f3f97 30deg 60deg,
+                              #7e0023 60deg 91deg, transparent 91deg 269deg,
+                              #00e400 269deg 300deg, #ffff00 300deg 330deg,
+                              #ff7e00 330deg 360deg);
+}
+
+.gauge > label {
+  font-size: 14px;
+  text-align: center;
+  background-color: white;
+  padding: .2rem 0;
+  display: block;
+}
+
+.dial {
+  background-color: #00ff00; /* Màu mặc định */
+  transition: background-color 1s, color .25s; /* Thay đổi màu sắc mượt mà */
+  border-radius: 10rem 10rem 0 0;
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  z-index: 2;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 1rem #000;
+  border-bottom: none;
+  box-sizing: border-box;
+  color: #000;
+}
+
+.dial.white {
+  color: #fff; /* Màu chữ khi nền tối */
+}
+
+.dial > span {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.dial > .arrow {
+  position: absolute;
+  left: calc(50% - .25rem);
+  bottom: 0;
+  width: .5rem;
+  height: calc(100% + 1px);
+  background-color: transparent;
+  transform-origin: bottom center;
+  transform: rotate(-90deg);
+  transition: transform 1s;
+}
+
+.dial > .arrow:after {
+  content: "";
+  border-left: .5rem solid transparent;
+  border-right: .5rem solid transparent;
+  border-top: .5rem solid #000; /* Màu của kim */
+  position: absolute;
+  left: calc(50% - .5rem);
+  top: 0;
+  width: 0;
+  height: 0;
+  transition: border-color .25s;
+}
+
+.dial.white > .arrow:after {
+  border-top-color: #fff; /* Màu kim khi nền tối */
+}
+
+.aqi-num {
+  font-weight: bold;
+  font-size: 120%;
+  margin-top: 1.25rem;
+}
+
+@media (forced-colors: active) {
+  .dial {
+    border: 2px solid black; /* Đường viền cho chế độ tương phản */
+    border-bottom: none;
+  }
+  
+  .gauge > div[role=meter] {
+    border-width: 2px;
+    border-bottom: none;
+  }
+  
+  .gauge > label {
+    border: 2px solid black; /* Đường viền cho nhãn */
+  }
+}

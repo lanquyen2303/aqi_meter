@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="iot.jpg" type="image/x-icon" />
+    <title>smart metering</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-row">
+          <div class="logo">
+            <img
+              src="cloud-connection_9377628.png"
+              alt="Logo"
+              class="small-logo"
+            />
+            <!-- Thêm hình ảnh logo -->
+            ThingsBoard
+          </div>
+          <div class="user-info">
+            <span>dathuynh03112002@gmail.com</span>
+            <span>System Administrator</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Phần menu với nền trắng -->
+    <div class="menu-container">
+      <ul class="nav-links">
+        <li>
+          <img src="home.png" alt="Home Logo" class="menu-logo" /><a href="#"
+            >Home</a
+          >
+        </li>
+        <li>
+          <img src="divice.png" alt="Devices Logo" class="menu-logo" /><a
+            href="#"
+            >Devices</a
+          >
+        </li>
+        <li>
+          <img
+            src="account.png"
+            alt="User Management Logo"
+            class="menu-logo"
+          /><a href="#">User Management</a>
+        </li>
+        <li>
+          <img src="compaise.png" alt="Companies Logo" class="menu-logo" /><a
+            href="#"
+            >Companies</a
+          >
+        </li>
+        <li>
+          <img src="setting.png" alt="Settings Logo" class="menu-logo" /><a
+            href="#"
+            >Settings</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <section class="dashboard">
+        <div class="summary-cards">
+          <div class="card">
+            <h3>Temperature</h3>
+            <img
+              src="celsius_6698144.png"
+              alt="Electricity Logo"
+              class="card-logo"
+            />
+            <p id="giatrinhietdo1">Đang tải...</p>
+            <!-- Hiển thị nhiệt độ -->
+            <span>P2_PFIEV</span>
+          </div>
+          <div class="card">
+            <h3>Humidity</h3>
+            <img
+              src="dew-point_4867883.png"
+              alt="Electricity Logo"
+              class="card-logo"
+            />
+            <p id="giatridoam1">Đang tải...</p>
+            <!-- Hiển thị độ ẩm -->
+            <span>P2_PFIEV</span>
+          </div>
+          <div class="card">
+            <h3>PM2.5</h3>
+            <img
+              src="air-pollution.png"
+              alt="Electricity Logo"
+              class="card-logo"
+            />
+            <p id="gia tri pm">Đang tải...</p>
+            <span>P2_PFIEV</span>
+          </div>
+          <div class="card">
+            <h3>Co</h3>
+            <img src="Co1z.png" alt="Electricity Logo" class="card-logo1" />
+            <p id="gia tri co">Đang tải...</p>
+            <span>P2_PFIEV</span>
+          </div>
+        </div>
+
+        <div class="charts">
+          <div class="temperature-chart">
+            <div class="boxtime">
+              <img src="LICH.jpg" alt="Calendar Icon" class="calendar-icon" />
+              <!-- Thêm logo lịch -->
+              <span id="current-time">00/00/00</span> |
+              <span id="oclock">00:00:00</span>
+            </div>
+
+            <!-- <h3>Average office temperature</h3> -->
+            <h3>Map</h3>
+            <iframe
+              width="100%"
+              height="350"
+              src="https://www.ventusky.com/?p=16.054;108.191;11&l=aqi&t=20240907/0000&w=off"
+              style="border: none"
+            ></iframe>
+          </div>
+
+          <div class="side-charts">
+            <div class="chart-card">
+              <h4>AQI</h4>
+              <div class="aqi-gauge">
+                <!-- <label for="set-aqi">Set AQI:</label
+                ><input
+                  type="range"
+                  id="set-aqi"
+                  min="0"
+                  max="500"
+                  value="10"
+                /> -->
+                <div class="gauge">
+                  <div
+                    role="meter"
+                    aria-valuemin="0"
+                    aria-valuemax="500"
+                    aria-labelledby="meter-label"
+                  >
+                    <div class="dial">
+                      <span class="aqi-num"id = "gia-tri-aqi"></span>
+                      <div class="arrow"></div>
+                    </div>
+                  </div>
+                  <label class="label" id="meter-label"
+                    >10 Minute Average US EPA PM2.5 AQI</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="side-chartssecond">
+              <div class="chart-card">
+                <h4>Electricity usage by device</h4>
+                <iframe
+                  width="100%"
+                  height="200"
+                  src="https://thingspeak.com/channels/2567364/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+          <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+          <!-- TODO: Add SDKs for Firebase products that you want to use
+                https://firebase.google.com/docs/web/setup#available-libraries -->
+          <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+          <!-- lien ket voi functions.js -->
+          <script src="script.js"></script>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
